@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Basic News App</string>
+    <string name="news_title">News Title</string>
+    <string name="author">Author</string>
+    <string name="date">Date</string>
+    <string name="no_internet_connection">No Internet Detected.</string>
+    <string name="no_news">No News Found.</string>
+    <string name="Author_Name">Sample Author name</string>
+    <string name="Date">Sample date</string>
+    <string name="Article_Heading">Article Heading</string>
+</resources>
