@@ -17,21 +17,22 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<NewsDetails>> {
     public static final String NEWS_URL =
             "https://content.guardianapis.com/search?api-key=3e60066b-4dfc-4ab7-93d2-d53102f3f68a";
     private static final int NEWS_LOADER_ID = 1;
-    private NewsAdapter mAdapter;
-    private TextView mEmptyStateTextView;
+    private NewsDetailsAdapter mAdapter;
+    private TextView mEmpty_State_Text_View;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ListView newsListView = findViewById(R.id.list);
-        mEmptyStateTextView = findViewById(R.id.empty_view);
-        newsListView.setEmptyView(mEmptyStateTextView);
-        mAdapter = new NewsAdapter(this, new ArrayList<NewsDetails>());
+        mEmpty_State_Text_View = findViewById(R.id.empty_view);
+        newsListView.setEmptyView(mEmpty_State_Text_View);
+        mAdapter = new NewsDetailsAdapter(this, new ArrayList<NewsDetails>());
         newsListView.setAdapter(mAdapter);
         newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         } else {
             View loadingIndicator = findViewById(R.id.loading_indicator);
             loadingIndicator.setVisibility(View.GONE);
-            mEmptyStateTextView.setText(R.string.no_internet_connection);
+            mEmpty_State_Text_View.setText(R.string.no_internet_connection);
         }
     }
 
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         uriBuilder.appendQueryParameter("orderBy", "newest");
         uriBuilder.appendQueryParameter("show-tags", "contributor");
         uriBuilder.appendQueryParameter("orderBy", "newest");
-        return new NewsLoader(this, uriBuilder.toString());
+        return new NewsDetailsLoader(this, uriBuilder.toString());
     }
 
     @Override
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         View loadingIndicator = findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
 
-        mEmptyStateTextView.setText(R.string.no_news);
+        mEmpty_State_Text_View.setText(R.string.no_news);
         mAdapter.clear();
 
         if (news != null && !news.isEmpty()) {

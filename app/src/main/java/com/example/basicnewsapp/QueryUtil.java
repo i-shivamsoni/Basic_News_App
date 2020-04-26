@@ -1,9 +1,11 @@
 package com.example.basicnewsapp;
 
 import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,10 +13,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+
 import static android.content.ContentValues.TAG;
 
 public final class QueryUtil {
@@ -29,10 +31,7 @@ public final class QueryUtil {
 
         URL url = createUrl(stringUrl);
         String jsonResponse = makeHttpRequest(url);
-
-        List<NewsDetails> newsList = extractDataFromJson(jsonResponse);
-
-        return newsList;
+        return extractDataFromJson(jsonResponse);
     }
 
     private static URL createUrl(String stringUrl) {
@@ -50,9 +49,9 @@ public final class QueryUtil {
     }
 
     private static String makeHttpRequest(URL url) {
-        HttpURLConnection urlConnection = null;
+        HttpURLConnection urlConnection;
         String jsonResponse = "";
-        InputStream inputStream = null;
+        InputStream inputStream;
 
         if (url == null) {
             return null;
@@ -69,6 +68,7 @@ public final class QueryUtil {
             }
         } catch (IOException e) {
             e.printStackTrace();
+
         }
 
         Log.d(TAG, "makeHttpRequest: " + jsonResponse);
@@ -76,9 +76,9 @@ public final class QueryUtil {
     }
 
     private static String readFromStream(InputStream inputStream) {
-        InputStreamReader streamReader = null;
+        InputStreamReader streamReader;
         StringBuilder result = new StringBuilder();
-        BufferedReader bufferedReader = null;
+        BufferedReader bufferedReader;
 
         streamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
         bufferedReader = new BufferedReader(streamReader);
@@ -113,7 +113,7 @@ public final class QueryUtil {
                 String url = currentNews.getString("webUrl");
 
                 JSONArray authorTag = currentNews.getJSONArray("tags");
-                String author="";
+                String author = "";
                 if (authorTag.length() != 0) {
                     JSONObject currentAuthorTag = authorTag.getJSONObject(0);
                     author = currentAuthorTag.getString("webTitle");

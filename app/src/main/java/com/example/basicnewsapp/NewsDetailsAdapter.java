@@ -1,6 +1,5 @@
 package com.example.basicnewsapp;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,25 +9,22 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
-public class NewsAdapter extends ArrayAdapter<NewsDetails> {
+public class NewsDetailsAdapter extends ArrayAdapter<NewsDetails> {
 
-    List<NewsDetails> mNewsList;
+    List<NewsDetails> mNews_List;
 
-    public NewsAdapter(@NonNull Context context, List<NewsDetails> newsList) {
+    public NewsDetailsAdapter(@NonNull Context context, List<NewsDetails> newsList) {
         super(context, 0, newsList);
-        mNewsList = newsList;
+        mNews_List = newsList;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = convertView;
-        NewsDetails currentNews = mNewsList.get(position);
+        NewsDetails currentNews = mNews_List.get(position);
 
         if (view == null) {
             view = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);

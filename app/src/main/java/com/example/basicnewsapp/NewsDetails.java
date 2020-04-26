@@ -5,6 +5,7 @@ public class NewsDetails {
     private String mDate;
     private String mAuthor;
     private String mUrl;
+
     public NewsDetails(String mTitle, String mAuthor, String mDate, String mUrl) {
         this.mTitle = mTitle;
         this.mAuthor = mAuthor;
@@ -15,12 +16,15 @@ public class NewsDetails {
     public String getmTitle() {
         return mTitle;
     }
+
     public String getmDate() {
         return mDate;
     }
+
     public String getmAuthor() {
         return mAuthor;
     }
+
     public String getmUrl() {
         return mUrl;
     }
